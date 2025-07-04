@@ -11,7 +11,7 @@ const gameStore = useGameStore();
 
     <div>
         <HiveButton @click="gameStore.deleteLetter">Delete</HiveButton>
-        <HiveButton >Rotate</HiveButton>
+        <HiveButton @click="gameStore.rotate">Rotate</HiveButton>
         <HiveButton @click="gameStore.enterWord">Enter</HiveButton>
         <p class="error" v-if="gameStore.invalidWord != ''">{{ gameStore.invalidWord }}</p>
     </div>

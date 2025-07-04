@@ -3,17 +3,23 @@ import { defineStore } from 'pinia'
 import wordsTxt from '../assets/words.txt?raw'
 
 export const useGameStore = defineStore('game', () => {
-  const allWords = ref<string[]>()
+  const allWords = ref<string[]>([])
   const allowedWords = ref<string[]>([])
-  const newGame = ref(false);
   const letters = ref<string[]>([])
   const currentWord = ref('')
   const invalidWord = ref('')
   const guessedWords = ref<string[]>([])
 
   function setup() {
-    newGame.value = true;
     allWords.value = wordsTxt.split('\n')
+    newGame()
+  }
+
+  function newGame() {
+    allowedWords.value = [];
+    currentWord.value = "";
+    invalidWord.value = "";
+    guessedWords.value = [];
     while(allowedWords.value.length < 5) {
       generateLetters();
       const allowedSet = new Set(letters.value)
@@ -21,9 +27,6 @@ export const useGameStore = defineStore('game', () => {
       allowedWords.value = allWords.value.filter(word => [...word].every(letter => allowedSet.has(letter)) && word.includes(letters.value[3]))
       console.log('Valid words: ' + allowedWords.value.length + ' / ' + allWords.value.length + ' words')
     }
-    
-
-    //letters.value = letters.value.map(l => l.toUpperCase())
   }
 
   function generateLetters() {
@@ -75,6 +78,8 @@ export const useGameStore = defineStore('game', () => {
         invalidWord.value = "Word already found"
       } else if (!currentWord.value.includes(letters.value[3])) {
         invalidWord.value = "Word must include letter " + letters.value[3].toUpperCase()
+      } else if (currentWord.value.length < 4) {
+        invalidWord.value = "Word too short"
       } else {
         invalidWord.value = "Word not in list"
       }
@@ -82,5 +87,15 @@ export const useGameStore = defineStore('game', () => {
     currentWord.value = '';
   }
 
-  return { setup, letters, currentWord, guessedWords, invalidWord, addLetter, deleteLetter, enterWord, allowedWords }
+  function rotate() {
+    const lettersCopy = [...letters.value]
+    letters.value[0] = lettersCopy[2]
+    letters.value[1] = lettersCopy[0]
+    letters.value[2] = lettersCopy[5]
+    letters.value[4] = lettersCopy[1]
+    letters.value[5] = lettersCopy[6]
+    letters.value[6] = lettersCopy[4]
+  }
+
+  return { setup, newGame, letters, currentWord, guessedWords, invalidWord, addLetter, deleteLetter, enterWord, rotate, allowedWords }
 })

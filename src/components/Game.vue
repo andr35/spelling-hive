@@ -5,6 +5,7 @@ import GuessedWords from './GuessedWords.vue';
 import WordBuilder from './WordBuilder.vue';
 import { onBeforeMount, onMounted } from 'vue';
 import { useGameStore } from '@/stores/game';
+import HiveButton from './HiveButton.vue';
 
 const gameStore = useGameStore();
 
@@ -21,7 +22,7 @@ onBeforeMount(() => {
     <div class="ui">
         <div class="title">
             <h1>Spelling Hive 🐝</h1>
-            <h4>Find the words using the letters of the hive, must use the central letter at least once!</h4>
+            <h4>Find the words using the letters of the hive, including the central letter at least once!</h4>
         </div>
         
     
@@ -31,6 +32,8 @@ onBeforeMount(() => {
             <LettersHive />
 
             <ControlButtons />
+
+            <HiveButton @click="gameStore.newGame()">New game</HiveButton>
         </div>
 
         <GuessedWords />
