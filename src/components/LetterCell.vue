@@ -34,7 +34,7 @@ function onClickCell() {
     width: fit-content;
     aspect-ratio: 1/cos(30deg);
     clip-path: polygon(50% -50%, 100% 50%, 50% 150%, 0 50%);
-    background: #cfcfcf;
+    background: var(--gray);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,16 +42,16 @@ function onClickCell() {
 }
 
 .cell:hover {
-    background: #bdbdbd;
+    background: var(--gray-hover);
     cursor: pointer;
 }
 
 .central {
-    background: #ffdc42;
+    background: var(--yellow)
 }
 
 .central:hover {
-    background: #ffd416;
+    background: var(--yellow-hover)
 }
 
 .letter {
