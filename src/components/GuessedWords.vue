@@ -14,13 +14,13 @@ const gameStore = useGameStore();
         </ul>
     </div>
 
-<!--     
-    <div>
+    
+    <!-- <div>
         <ul>
             <li v-for="word in gameStore.allowedWords">{{ word }}</li>
         </ul>
-    </div> 
-    -->
+    </div>  -->
+   
 
 </template>
 

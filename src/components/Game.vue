@@ -60,7 +60,7 @@ onBeforeMount(() => {
 
 .title {
     flex: 0 0 100%;
-    margin: 2rem 2rem;
+    margin: 0.5rem 2rem;
 }
 
 h1 {

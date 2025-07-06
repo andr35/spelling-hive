@@ -13,16 +13,12 @@ const gameStore = useGameStore();
         <HiveButton @click="gameStore.deleteLetter">Delete</HiveButton>
         <HiveButton @click="gameStore.rotate">Rotate</HiveButton>
         <HiveButton @click="gameStore.enterWord">Enter</HiveButton>
-        <p class="error" v-if="gameStore.invalidWord != ''">{{ gameStore.invalidWord }}</p>
+        
     </div>
     
 
 </template>
 
 <style scoped>
-.error {
-    text-align: center;
-    font-size: medium;
-    color: red;
-}
+
 </style>

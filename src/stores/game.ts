@@ -7,11 +7,12 @@ export const useGameStore = defineStore('game', () => {
   const allowedWords = ref<string[]>([])
   const letters = ref<string[]>([])
   const currentWord = ref('')
+  const lastGuessedWord = ref('')
   const invalidWord = ref('')
   const guessedWords = ref<string[]>([])
 
   function setup() {
-    allWords.value = wordsTxt.split('\n')
+    allWords.value = wordsTxt.split('\r\n')
     newGame()
   }
 
@@ -25,7 +26,7 @@ export const useGameStore = defineStore('game', () => {
       const allowedSet = new Set(letters.value)
       // Filter words to only keep those with the generated letters and that contain the central letter
       allowedWords.value = allWords.value.filter(word => [...word].every(letter => allowedSet.has(letter)) && word.includes(letters.value[3]))
-      console.log('Valid words: ' + allowedWords.value.length + ' / ' + allWords.value.length + ' words')
+      console.log(`Using letters ${letters.value}: genereted ${allowedWords.value.length} valid words out of ${allWords.value.length} words`)
     }
   }
 
@@ -71,7 +72,8 @@ export const useGameStore = defineStore('game', () => {
 
   function enterWord() {
     if (allowedWords.value.includes(currentWord.value) && !guessedWords.value.includes(currentWord.value)) {
-      guessedWords.value.push(currentWord.value);
+      lastGuessedWord.value = currentWord.value
+      guessedWords.value.push(currentWord.value)
       invalidWord.value = ""
     } else {
       if (guessedWords.value.includes(currentWord.value)) {
@@ -97,5 +99,18 @@ export const useGameStore = defineStore('game', () => {
     letters.value[6] = lettersCopy[4]
   }
 
-  return { setup, newGame, letters, currentWord, guessedWords, invalidWord, addLetter, deleteLetter, enterWord, rotate, allowedWords }
+  return { 
+    setup, 
+    newGame, 
+    letters, 
+    currentWord, 
+    lastGuessedWord, 
+    guessedWords, 
+    invalidWord, 
+    addLetter, 
+    deleteLetter, 
+    enterWord, 
+    rotate, 
+    allowedWords
+  }
 })
