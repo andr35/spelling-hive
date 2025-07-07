@@ -26,7 +26,6 @@ const gameStore = useGameStore();
 
 <style scoped>
 .container {
-    border-left: 1px solid #cacaca;
     padding: 0 2rem;
 }
 

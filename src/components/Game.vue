@@ -19,45 +19,36 @@ onBeforeMount(() => {
 <template>
     
 
-    <div class="ui">
-        <div class="title">
-            <h1>Spelling Hive 🐝</h1>
-            <h4>Find the words using the letters of the hive, including the central letter at least once!</h4>
-        </div>
-        
+    <div class="title">
+        <h1>Spelling Hive 🐝</h1>
+        <h4>Find the words using the letters of the hive, including the central letter at least once!</h4>
+    </div>
     
-        <div class="ui-hive">
-            <WordBuilder />
+    <div class="game">
+        <div class="controls">
+            <div class="word-builder">
+                <WordBuilder />
+            </div>            
 
             <LettersHive />
 
-            <ControlButtons />
+            <div class="buttons">
+                <ControlButtons />
 
-            <HiveButton @click="gameStore.newGame()">New game</HiveButton>
+                <HiveButton @click="gameStore.newGame()">New game</HiveButton>
+            </div>
+            
         </div>
 
-        <GuessedWords />
+        <div class="score">
+            <GuessedWords />
+        </div>
+        
     </div>
-
     
-
 </template>
 
 <style scoped>
-.ui {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.ui-hive {
-    flex: 0 0 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
-    margin: 0 2rem;
-}
-
 .title {
     flex: 0 0 100%;
     margin: 0.5rem 2rem;
@@ -65,5 +56,30 @@ onBeforeMount(() => {
 
 h1 {
     font-size: 2.5rem;
+}
+
+.game {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.controls {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    margin: 0 1rem 2rem 1rem;
+}
+
+.score {
+    flex: 1 0 70%;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
 }
 </style>

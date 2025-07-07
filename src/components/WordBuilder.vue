@@ -51,7 +51,7 @@ watch(() => gameStore.invalidWord, () => {
 
 <style scoped>
 .word-container {
-    height: 10rem;
+    height: 6rem;
 }
 
 p {
