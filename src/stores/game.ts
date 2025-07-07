@@ -12,7 +12,8 @@ export const useGameStore = defineStore('game', () => {
   const guessedWords = ref<string[]>([])
 
   function setup() {
-    allWords.value = wordsTxt.split('\r\n')
+    allWords.value = wordsTxt.split('\n')
+    allWords.value.forEach(word => word.replace('\r', ''))
     newGame()
   }
 

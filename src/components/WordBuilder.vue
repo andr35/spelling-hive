@@ -50,6 +50,10 @@ watch(() => gameStore.invalidWord, () => {
 </template>
 
 <style scoped>
+.word-container {
+    height: 10rem;
+}
+
 p {
     text-align: center;
     font-size: 2rem;
