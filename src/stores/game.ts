@@ -30,6 +30,7 @@ export const useGameStore = defineStore('game', () => {
     currentWord.value = "";
     invalidWord.value = "";
     guessedWords.value = [];
+    hintWord.value = "";
     while(allowedWords.value.length < 5) {
       generateLetters();
       const allowedSet = new Set(letters.value)
