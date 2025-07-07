@@ -11,6 +11,8 @@ export const useGameStore = defineStore('game', () => {
   const invalidWord = ref('')
   const guessedWords = ref<string[]>([])
 
+  const hintWord = ref('')
+
   const victory = computed(() => {
     return guessedWords.value.length == allowedWords.value.length;
   })
@@ -95,6 +97,7 @@ export const useGameStore = defineStore('game', () => {
       invalidWord.value = ""
     }, 2000);
     currentWord.value = ''
+    hintWord.value = ''
   }
 
   function rotate() {
@@ -105,6 +108,16 @@ export const useGameStore = defineStore('game', () => {
     letters.value[4] = lettersCopy[1]
     letters.value[5] = lettersCopy[6]
     letters.value[6] = lettersCopy[4]
+  }
+
+  function hint() {
+    const missing = allowedWords.value.filter(word => !guessedWords.value.includes(word))
+    const missingWord = missing[0]
+    const regex = new RegExp(`[^${letters.value[3]}]`, 'g')
+    hintWord.value = missingWord.replace(regex, '?')
+    setTimeout(() => {
+      hintWord.value = ""
+    }, 5000)
   }
 
   return { 
@@ -120,6 +133,8 @@ export const useGameStore = defineStore('game', () => {
     enterWord, 
     rotate, 
     allowedWords,
+    hint,
+    hintWord,
     victory
   }
 })

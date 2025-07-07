@@ -13,7 +13,6 @@ button {
     border-radius: 15%;
     border: 1px solid #cacaca;
     padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
     background-color: white;
     display: inline;
 }
