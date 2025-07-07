@@ -1,7 +1,8 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 // import wordsTxt from '../assets/words.txt?raw'
-import wordsTxt from '../assets/basic_words.txt?raw'
+// import wordsTxt from '../assets/basic_words.txt?raw'
+import wordsTxt from '../assets/better.txt?raw'
 
 export const useGameStore = defineStore('game', () => {
   const allWords = ref<string[]>([])
