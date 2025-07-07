@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import wordsTxt from '../assets/words.txt?raw'
+// import wordsTxt from '../assets/words.txt?raw'
+import wordsTxt from '../assets/basic_words.txt?raw'
 
 export const useGameStore = defineStore('game', () => {
   const allWords = ref<string[]>([])
@@ -34,6 +35,7 @@ export const useGameStore = defineStore('game', () => {
       // Filter words to only keep those with the generated letters and that contain the central letter
       allowedWords.value = allWords.value.filter(word => [...word].every(letter => allowedSet.has(letter)) && word.includes(letters.value[3]))
       console.log(`Using letters ${letters.value}: genereted ${allowedWords.value.length} valid words out of ${allWords.value.length} words`)
+      console.log(`Words to find: ${allowedWords.value}`)
     }
   }
 

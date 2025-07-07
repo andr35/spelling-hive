@@ -10,7 +10,7 @@ const gameStore = useGameStore();
     <div class="container">
         <p v-if="!gameStore.victory">You have guessed {{ gameStore.guessedWords.length }} words. Still {{ gameStore.allowedWords.length - gameStore.guessedWords.length }} to find.</p>
         
-        <div class="hint">
+        <div class="hint" v-if="!gameStore.victory">
             <HiveButton @click="gameStore.hint">Hint</HiveButton>
             <p>
                 <span v-for="letter in [...gameStore.hintWord]" :class="{'highlight-letter': letter == gameStore.letters[3]}">
