@@ -91,7 +91,10 @@ export const useGameStore = defineStore('game', () => {
         invalidWord.value = "Word not in list"
       }
     }
-    currentWord.value = '';
+    setTimeout(() => {
+      invalidWord.value = ""
+    }, 2000);
+    currentWord.value = ''
   }
 
   function rotate() {

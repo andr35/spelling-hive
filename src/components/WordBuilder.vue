@@ -6,7 +6,6 @@ import { useGameStore } from '../stores/game';
 const gameStore = useGameStore();
 
 const showGuessed = ref(false);
-const showError = ref(false);
 
 watch(() => gameStore.lastGuessedWord, () => {
     if (gameStore.lastGuessedWord != '') {
@@ -23,13 +22,6 @@ watch(() => gameStore.currentWord, () => {
     }
 })
 
-watch(() => gameStore.invalidWord, () => {
-    showError.value = true
-    setTimeout(() => {
-        showError.value = false;
-    }, 2000);
-})
-
 </script>
 
 <template>
@@ -44,7 +36,7 @@ watch(() => gameStore.invalidWord, () => {
         <p v-else class="guessed">
             <span class="rotating-bee">🐝</span> {{ gameStore.lastGuessedWord.toUpperCase() }} <span class="rotating-bee">🐝</span>
         </p>
-        <p class="error" v-if="showError">{{ gameStore.invalidWord }}</p>
+        <p class="error">{{ gameStore.invalidWord }}</p>
     </div>
     <div v-else>
         <p class="guessed"><span class="rotating-bee">🐝</span> VICTORY <span class="rotating-bee">🐝</span></p>
