@@ -7,7 +7,7 @@ const gameStore = useGameStore();
 
 <template>
     <div class="container">
-        <p>You have guessed {{ gameStore.guessedWords.length }} words. Still {{ gameStore.allowedWords.length - gameStore.guessedWords.length }} to find.</p>
+        <p v-if="!gameStore.victory">You have guessed {{ gameStore.guessedWords.length }} words. Still {{ gameStore.allowedWords.length - gameStore.guessedWords.length }} to find.</p>
         <ul>
             <li v-for="word in gameStore.guessedWords">{{ word.toUpperCase() }}</li>
         </ul>

@@ -33,7 +33,7 @@ onBeforeMount(() => {
             <LettersHive />
 
             <div class="buttons">
-                <ControlButtons />
+                <ControlButtons v-if="!gameStore.victory" />
 
                 <HiveButton @click="gameStore.newGame()">New game</HiveButton>
             </div>
@@ -43,7 +43,6 @@ onBeforeMount(() => {
         <div class="score">
             <GuessedWords />
         </div>
-        
     </div>
     
 </template>

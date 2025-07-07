@@ -11,6 +11,10 @@ export const useGameStore = defineStore('game', () => {
   const invalidWord = ref('')
   const guessedWords = ref<string[]>([])
 
+  const victory = computed(() => {
+    return guessedWords.value.length == allowedWords.value.length;
+  })
+
   function setup() {
     allWords.value = wordsTxt.split('\n')
     allWords.value.forEach(word => word.replace('\r', ''))
@@ -112,6 +116,7 @@ export const useGameStore = defineStore('game', () => {
     deleteLetter, 
     enterWord, 
     rotate, 
-    allowedWords
+    allowedWords,
+    victory
   }
 })

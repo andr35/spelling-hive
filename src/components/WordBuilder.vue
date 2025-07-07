@@ -34,7 +34,7 @@ watch(() => gameStore.invalidWord, () => {
 
 <template>
 
-    <div class="word-container">
+    <div class="word-container" v-if="!gameStore.victory">
         <p v-if="!showGuessed">
             <span v-for="letter in [...gameStore.currentWord]" :class="{'highlight-letter': letter == gameStore.letters[3]}">
                 {{ letter.toUpperCase() }}
@@ -45,6 +45,10 @@ watch(() => gameStore.invalidWord, () => {
             <span class="rotating-bee">🐝</span> {{ gameStore.lastGuessedWord.toUpperCase() }} <span class="rotating-bee">🐝</span>
         </p>
         <p class="error" v-if="showError">{{ gameStore.invalidWord }}</p>
+    </div>
+    <div v-else>
+        <p class="guessed"><span class="rotating-bee">🐝</span> VICTORY <span class="rotating-bee">🐝</span></p>
+        <small>You have guessed all the words!</small>
     </div>
 
 </template>
@@ -59,9 +63,13 @@ p {
     font-size: 2rem;
 }
 
+small {
+    font-size: 1rem;
+}
+
 .guessed {
     color: var(--yellow-hover);
-    animation: change-color-guessed 0.5s infinite;
+    animation: change-color-guessed 1s infinite;
 }
 
 @keyframes change-color-guessed {

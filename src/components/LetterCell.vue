@@ -10,7 +10,9 @@ const props = defineProps<{
 const gameStore = useGameStore();
 
 function onClickCell() {
-    gameStore.addLetter(props.letter);
+    if (!gameStore.victory) {
+        gameStore.addLetter(props.letter);
+    }
 }
 
 
@@ -23,7 +25,9 @@ function onClickCell() {
         :class="{ 'central': props.central }"
         @click="onClickCell" 
     >
-        <p class="letter">{{ letter?.toUpperCase() }}</p>
+        <p class="letter" v-if="!gameStore.victory">{{ letter?.toUpperCase() }}</p>
+        <p v-else-if="gameStore.victory && !props.central">🐝</p>
+        <p v-else-if="gameStore.victory && props.central">🏆</p>
     </div>
 
 </template>
