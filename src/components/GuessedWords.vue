@@ -7,8 +7,7 @@ const gameStore = useGameStore();
 
 <template>
     <div class="container">
-        <p>You have guessed {{ gameStore.guessedWords.length }} words.</p>
-        <p>Still {{ gameStore.allowedWords.length - gameStore.guessedWords.length }} to find.</p>
+        <p>You have guessed {{ gameStore.guessedWords.length }} words. Still {{ gameStore.allowedWords.length - gameStore.guessedWords.length }} to find.</p>
         <ul>
             <li v-for="word in gameStore.guessedWords">{{ word.toUpperCase() }}</li>
         </ul>
@@ -19,7 +18,7 @@ const gameStore = useGameStore();
         <ul>
             <li v-for="word in gameStore.allowedWords">{{ word }}</li>
         </ul>
-    </div>  -->
+    </div>   -->
    
 
 </template>
@@ -33,5 +32,15 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+li {
+    border-radius: 15%;
+    border: 1px solid #cacaca;
+    padding: 0.5rem 1rem;
+    background-color: var(--gray);
 }
 </style>
