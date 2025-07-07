@@ -56,5 +56,8 @@ function onClickCell() {
 
 .letter {
     font-size: x-large;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 </style>
